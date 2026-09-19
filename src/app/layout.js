@@ -1,6 +1,7 @@
-import {Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,7 +13,6 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
 });
 
-
 export const metadata = {
   title: "StartupForge",
   description: "Startup team builder",
@@ -23,11 +23,14 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen bg-background text-foreground antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <Providers>
-        {children}
-      </Providers>
+      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-orange-500/20 selection:text-orange-500">
+        <Providers>
+          <Navbar/>
+          {children}
+          </Providers>
+      </body>
     </html>
   );
 }

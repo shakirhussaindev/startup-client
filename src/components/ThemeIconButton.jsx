@@ -1,4 +1,3 @@
-// components/ThemeIconButton.jsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,19 +15,17 @@ export default function ThemeIconButton() {
   }, []);
 
   if (!mounted) {
-    return <Button isIconOnly variant="flat" size="sm" isLoading />;
+    return <div className="h-9 w-9 rounded-xl bg-default-100 animate-pulse" />;
   }
 
   const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
 
   return (
     <Button
-      isIconOnly
-      variant="flat"
-      size="sm"
+      variant="ghost"
       aria-label="Toggle theme"
       onPress={() => setTheme(isDark ? "light" : "dark")}
-      className="relative overflow-hidden"
+      className="relative h-9 w-9 min-w-9 p-0 rounded-xl overflow-hidden text-default-600 hover:text-foreground"
     >
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
@@ -38,7 +35,7 @@ export default function ThemeIconButton() {
             animate={{ y: 0, opacity: 1, rotate: 0 }}
             exit={{ y: 16, opacity: 0, rotate: 45 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="text-blue-400"
+            className="text-cyan-400"
           >
             <Moon size={18} />
           </motion.div>
