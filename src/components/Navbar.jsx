@@ -218,7 +218,7 @@ export default function Navbar() {
                 href="/login"
                 variant="ghost"
                 size="sm"
-                className="font-medium text-default-700 hover:text-foreground"
+                className="font-medium text-default-700 hover:text-foreground rounded-lg"
               >
                 Log In
               </Button>
@@ -226,7 +226,7 @@ export default function Navbar() {
                 as={Link}
                 href="/login"
                 size="sm"
-                className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-orange-500/35"
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-orange-500/35"
               >
                 <span>Get Started</span>
                 <ArrowRight
