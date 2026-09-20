@@ -14,13 +14,14 @@ import {
   LogOut,
   ArrowRight,
   ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 import { Button, Dropdown, Label, Avatar } from "@heroui/react";
 
 // Import your Better Auth client
 import { authClient } from "@/lib/auth-client";
 
-// ThemeIconButton ইমপোর্ট করা হলো (ThemeSwitch চাইলে "./ThemeSwitch" দিতে পারেন)
+// ThemeIconButton ইমপোর্ট
 import ThemeIconButton from "./ThemeIconButton";
 
 const publicNavLinks = [
@@ -115,7 +116,6 @@ export default function Navbar() {
 
         {/* ================= RIGHT: THEME TOGGLE & AUTH ================= */}
         <div className="hidden items-center gap-3 md:flex">
-          {/* Theme Button */}
           <ThemeIconButton />
 
           {/* Skeleton placeholder while session loads */}
@@ -125,14 +125,14 @@ export default function Navbar() {
               <div className="h-9 w-24 rounded-lg bg-default-200/60 animate-pulse" />
             </div>
           ) : user ? (
-            /* Authenticated: Hero UI v3 Dropdown & Avatar */
+            /* Authenticated: Hero UI v3 Dropdown & Avatar with Arrow */
             <Dropdown>
               <Button
                 variant="ghost"
                 aria-label="User profile menu"
-                className="h-10 w-10 min-w-10 p-0 rounded-full ring-2 ring-transparent transition-all hover:ring-orange-500/40"
+                className="group flex h-9 items-center gap-2 rounded-full border border-default-200/80 bg-default-100/60 pl-1 pr-2.5 transition-all duration-200 hover:border-orange-500/60 hover:bg-orange-500/10 hover:shadow-sm hover:shadow-orange-500/10 dark:border-default-100/30 dark:bg-default-100/20 dark:hover:border-orange-500/60 dark:hover:bg-orange-500/15"
               >
-                <Avatar className="h-9 w-9">
+                <Avatar className="h-8 w-8">
                   <Avatar.Image
                     src={
                       user.image ||
@@ -140,8 +140,16 @@ export default function Navbar() {
                     }
                     alt={user.name || "User Avatar"}
                   />
-                  <Avatar.Fallback>{getInitials(user.name)}</Avatar.Fallback>
+                  <Avatar.Fallback className="text-[11px] font-bold text-orange-500">
+                    {getInitials(user.name)}
+                  </Avatar.Fallback>
                 </Avatar>
+
+                {/* Dropdown Arrow */}
+                <ChevronDown
+                  size={14}
+                  className="text-default-500 transition-all duration-200 group-hover:translate-y-0.5 group-hover:text-orange-500 dark:text-default-400 dark:group-hover:text-orange-400"
+                />
               </Button>
 
               <Dropdown.Popover className="min-w-56 p-1.5 shadow-xl">
@@ -213,27 +221,27 @@ export default function Navbar() {
           ) : (
             /* Unauthenticated: Login & Get Started CTAs */
             <div className="flex items-center gap-2">
-              <Button
-                as={Link}
-                href="/login"
-                variant="ghost"
-                size="sm"
-                className="font-medium text-default-700 hover:text-foreground rounded-lg"
-              >
-                Log In
-              </Button>
-              <Button
-                as={Link}
-                href="/login"
-                size="sm"
-                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-orange-500/35"
-              >
-                <span>Get Started</span>
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-200 group-hover:translate-x-0.5"
-                />
-              </Button>
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="font-medium text-default-700 hover:text-foreground rounded-lg"
+                >
+                  Log In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button
+                  size="sm"
+                  className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-orange-500/35"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  />
+                </Button>
+              </Link>
             </div>
           )}
         </div>
@@ -348,21 +356,19 @@ export default function Navbar() {
               ) : (
                 /* Unauthenticated Mobile Actions */
                 <div className="flex flex-col gap-2 pt-2 border-t border-default-100">
-                  <Button
-                    as={Link}
-                    href="/login"
-                    variant="secondary"
-                    className="w-full font-semibold"
-                  >
-                    Log In
-                  </Button>
-                  <Button
-                    as={Link}
-                    href="/login"
-                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/20"
-                  >
-                    <span>Get Started</span>
-                  </Button>
+                  <Link href="/login">
+                    <Button
+                      variant="secondary"
+                      className="w-full font-semibold"
+                    >
+                      Log In
+                    </Button>
+                  </Link>
+                  <Link href="/signup">
+                    <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 font-semibold text-white shadow-md shadow-orange-500/20">
+                      <span>Get Started</span>
+                    </Button>
+                  </Link>
                 </div>
               )}
             </div>
