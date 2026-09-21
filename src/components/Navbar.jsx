@@ -1,4 +1,3 @@
-// components/Navbar.jsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -21,7 +20,7 @@ import { Button, Dropdown, Label, Avatar } from "@heroui/react";
 // Import your Better Auth client
 import { authClient } from "@/lib/auth-client";
 
-// ThemeIconButton ইমপোর্ট
+
 import ThemeIconButton from "./ThemeIconButton";
 
 const publicNavLinks = [
@@ -66,6 +65,12 @@ export default function Navbar() {
       .join("")
       .toUpperCase();
   };
+
+   const pathName = usePathname();
+
+   if (pathName.includes("dashboard")) {
+     return null;
+   }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-default-200/50 bg-background/75 backdrop-blur-xl transition-colors dark:border-default-100/20">
@@ -156,7 +161,7 @@ export default function Navbar() {
                 <Dropdown.Menu
                   aria-label="User actions"
                   onAction={(key) => {
-                    if (key === "dashboard") router.push("/dashboard");
+                    if (key === "dashboard") router.push(`/dashboard/${user.role}`);
                     if (key === "profile") router.push("/profile");
                     if (key === "logout") handleLogout();
                   }}

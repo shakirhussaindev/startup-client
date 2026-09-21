@@ -1,7 +1,8 @@
-// components/Footer.jsx
+"use client";
 import Link from "next/link";
 import { Flame, Mail, MapPin } from "lucide-react";
 import { FaGithub, FaXTwitter, FaLinkedin, FaDiscord } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 const platformLinks = [
   { name: "Home", href: "/" },
@@ -26,6 +27,11 @@ const socialLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const pathName = usePathname();
+  if (pathName.includes("dashboard")) {
+    return null;
+  }
 
   return (
     <footer className="relative border-t border-default-200/50 bg-background/95 transition-colors dark:border-default-100/20">
