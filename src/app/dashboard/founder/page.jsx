@@ -13,7 +13,6 @@ import {
   CheckCircle2,
   ChevronRight,
   TrendingUp,
-  Sparkles,
 } from "lucide-react";
 import { Button, Avatar } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
@@ -117,7 +116,7 @@ export default function DashboardOverviewPage() {
               Welcome back, {user?.name ? user.name.split(" ")[0] : "Founder"}
             </h1>
             <span className="inline-flex items-center gap-1 rounded-full bg-orange-500/10 px-2.5 py-0.5 text-xs font-semibold text-orange-600 dark:text-orange-400">
-              <Sparkles size={12} />
+             
               {user?.role || "Founder"}
             </span>
           </div>
