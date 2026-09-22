@@ -1,14 +1,23 @@
 "use server";
-const basrUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
-export const createOpportunity = async (newOpportunity) => {
-  const res = await fetch(`${basrUrl}/api/opportunities`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newOpportunity),
-  });
+import { serverMutation } from "../core/server";
 
-  return res.json();
-};
+
+export const createOpportunity = async(newOpportunity) =>{
+  return serverMutation("/api/opportunities",newOpportunity);
+}
+
+
+// const basrUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+// export const createOpportunity = async (newOpportunity) => {
+//   const res = await fetch(`${basrUrl}/api/opportunities`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(newOpportunity),
+//   });
+
+//   return res.json();
+// };

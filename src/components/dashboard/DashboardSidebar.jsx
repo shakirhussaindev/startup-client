@@ -31,7 +31,7 @@ const navItems = [
   },
   {
     label: "Manage Startup",
-    href: "/dashboard/manage-startup",
+    href: "/dashboard/founder/manage-startup",
     icon: Settings2,
   },
   {
