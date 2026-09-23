@@ -1,11 +1,12 @@
-// components/opportunities/OpportunitiesExplorer.jsx
+
 "use client";
 
 import { useState, useMemo } from "react";
 import { Briefcase, RotateCcw } from "lucide-react";
 import { Button } from "@heroui/react";
-import OpportunityCard from "@/components/opportunities/OpportunityCard";
+// import OpportunityCard from "@/components/opportunities/OpportunityCard";
 import OpportunitiesFilterBar from "./OpportunitiesFilterBar";
+import OpportunityCard from "./OpportunityCard";
 
 const INITIAL_FILTERS = {
   search: "",

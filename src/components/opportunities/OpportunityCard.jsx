@@ -13,21 +13,8 @@ import {
 import { Card, Button, Avatar } from "@heroui/react";
 
 export default function OpportunityCard({ opportunity }) {
-  // Fallback sample data if no prop is provided
-  const data = opportunity || {
-    _id: "6ab35e32c4ff33da8f015073",
-    title: "Payment Infrastructure Engineer",
-    skills: ["Node.js", "Payment APIs", "Distributed Systems"],
-    workType: "remote",
-    commitment: "full-time",
-    deadline: "2026-11-06",
-    status: "Active",
-    startupId: "6ab34b89c4ff33da8f015055",
-    startupName: "ModernTreasury",
-    StartupIndustry: "Fintech / Payments",
-    startupLogo: "https://i.ibb.co/35M4XJrJ/Modern-Treasury.jpg",
-    createdAt: "2026-09-23T05:13:21.925Z",
-  };
+ 
+  const data = opportunity 
 
   const formattedDeadline = new Date(data.deadline).toLocaleDateString(
     "en-US",
@@ -133,7 +120,7 @@ export default function OpportunityCard({ opportunity }) {
           </div>
         </div>
 
-        <Link href={`/opportunities/${data._id}/apply`}>
+        <Link href={`/opportunities/${data._id}`}>
           <Button
             size="sm"
             className="group/btn flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 px-3.5 py-1.5 text-xs font-bold text-white shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02] hover:shadow-orange-500/35"

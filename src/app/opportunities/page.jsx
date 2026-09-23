@@ -14,7 +14,7 @@ export default async function OpportunitiesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Header Section */}
+      
       <div className="mb-8 flex flex-col gap-2">
         <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           Explore Opportunities
@@ -25,7 +25,6 @@ export default async function OpportunitiesPage() {
         </p>
       </div>
 
-      {/* Explorer with Integrated Search & Filter Controls */}
       <OpportunitiesExplorer initialOpportunities={opportunities} />
     </div>
   );
