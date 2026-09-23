@@ -1,3 +1,5 @@
+import { serverFetch } from "../core/server";
+
 const basrUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const getStartupOpportunities = async (startupId) => {
@@ -5,4 +7,8 @@ export const getStartupOpportunities = async (startupId) => {
     `${basrUrl}/api/opportunities?startupId=${startupId}`,
   );
   return res.json();
+};
+
+export const getOpportunities = async () => {
+  return serverFetch("/api/all/opportunities");
 };

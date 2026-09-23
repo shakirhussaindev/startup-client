@@ -4,20 +4,16 @@ import { Plus } from "lucide-react";
 import { Button } from "@heroui/react";
 import { getStartupOpportunities } from "@/lib/api/opportunities";
 import OpportunitiesTable from "@/components/dashboard/founder/OpportunitiesTable";
+import { getLoggedInFounderStartup } from "@/lib/api/startup";
 
 export const metadata = {
   title: "Manage Opportunities - StartupForge",
 };
 
 export default async function MyOpportunitiesPage() {
-  const startupId = "start012";
+  const startup = await getLoggedInFounderStartup()
+  const opportunities = await getStartupOpportunities(startup._id) || []
 
-  let opportunities = [];
-  try {
-    opportunities = await getStartupOpportunities(startupId);
-  } catch (error) {
-    console.error("Error loading opportunities:", error);
-  }
 
   return (
     <div className="space-y-6">

@@ -245,7 +245,7 @@ export default function StartupProfile({ founder, founderStartup }) {
       </AnimatePresence>
 
       {/* ================= 1. EMPTY STATE ================= */}
-      {!startup._id ? (
+      {!startup?._id ? (
         <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-default-300 bg-background/60 p-12 text-center shadow-sm backdrop-blur-xl dark:border-default-100/20">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-500/10 text-orange-500 shadow-inner">
             <Rocket size={32} />
