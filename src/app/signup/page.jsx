@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Flame,
@@ -33,6 +33,9 @@ import { authClient } from "@/lib/auth-client";
 
 export default function SignupPage() {
   const router = useRouter();
+
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get("redirect") || "/"
 
   // Form states
   const [name, setName] = useState("");
@@ -64,8 +67,8 @@ export default function SignupPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 5 * 1024 * 1024) {
-      setServerError("Image size must be under 5MB.");
+    if (file.size > 2 * 1024 * 1024) {
+      setServerError("Image size must be under 2MB.");
       return;
     }
 
@@ -145,7 +148,7 @@ export default function SignupPage() {
         name,
         email,
         password,
-        image: photoUrl || undefined,
+        image: photoUrl,
         role,
       });
 
@@ -163,7 +166,7 @@ export default function SignupPage() {
       );
 
       setTimeout(() => {
-        router.push("/login?registered=true");
+        router.push(`/login?redirect=${redirectTo}`);
       }, 1500);
     } catch (err) {
       setServerError(err.message || "An unexpected error occurred.");
@@ -524,7 +527,7 @@ export default function SignupPage() {
           <p className="mt-8 text-center text-sm text-default-500">
             Already have an account?{" "}
             <Link
-              href="/login"
+              href={`/login?redirect=${redirectTo}`}
               className="font-semibold text-orange-600 transition-colors hover:text-orange-500 dark:text-orange-400"
             >
               Log in

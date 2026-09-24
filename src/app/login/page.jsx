@@ -29,9 +29,8 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Intended route or fallback to home "/"
-  const callbackUrl =
-    searchParams.get("callbackUrl") || searchParams.get("redirect") || "/";
+ 
+  const redirectTo = searchParams.get("redirect") || "/";
 
   // Check if redirected immediately after signing up
   const isRegistered = searchParams.get("registered") === "true";
@@ -60,7 +59,6 @@ function LoginForm() {
       const { data, error } = await authClient.signIn.email({
         email,
         password,
-        callbackURL: callbackUrl,
       });
 
       if (error) {
@@ -74,7 +72,7 @@ function LoginForm() {
       setSuccessMsg("Logged in successfully! Redirecting...");
 
       setTimeout(() => {
-        router.push(callbackUrl);
+        router.push(redirectTo);
         router.refresh();
       }, 800);
     } catch (err) {
@@ -285,7 +283,7 @@ function LoginForm() {
           <p className="mt-8 text-center text-sm text-default-500">
             Don&apos;t have an account?{" "}
             <Link
-              href="/signup"
+              href={`/signup?redirect=${redirectTo}`}
               className="font-semibold text-orange-600 transition-colors hover:text-orange-500 dark:text-orange-400"
             >
               Sign up
