@@ -81,12 +81,10 @@ export default function ApplyForm({ opportunity, applicant }) {
         opportunityTitle: opportunity?.title,
         startupId: opportunity?.startupId,
         startupName: opportunity?.startupName,
-        applicant: {
-          id: applicant?._id || applicant?.id,
-          name: applicant?.name,
-          email: applicant?.email,
-          image: applicant?.image,
-        },
+        applicantId: applicant?._id || applicant?.id,
+        applicantName: applicant?.name,
+        applicantEmail: applicant?.email, 
+        applicantImg: applicant?.image,
         resumeLink: resumeLink.trim(),
         portfolioUrl: portfolioUrl.trim() || null,
         linkedinUrl: linkedinUrl.trim() || null,
@@ -246,8 +244,8 @@ export default function ApplyForm({ opportunity, applicant }) {
               />
             </div>
             <Description className="text-[11px] text-default-400">
-              Ensure the link sharing permission is set to "Anyone with the link
-              can view".
+              Ensure the link sharing permission is set to &quot;Anyone with the link
+              can view&quot;.
             </Description>
             <FieldError />
           </TextField>
