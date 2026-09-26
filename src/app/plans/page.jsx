@@ -64,11 +64,11 @@ export const FOUNDER_PLANS = [
     badge: "Maximum Reach",
     price: "$49.99",
     period: "month",
-    postLimit: "Unlimited posts / month",
+    postLimit: "Up to 100 posts / month",
     description:
       "For active ventures, studios, and agencies hiring across multiple roles continuously.",
     features: [
-      "Unlimited opportunity listings every month",
+      "100 opportunity listings every month",
       "Top-tier pinned placement across all filters",
       "Direct export of applicant contact data",
       "Dedicated talent matching assistance",

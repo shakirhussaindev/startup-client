@@ -143,6 +143,8 @@ export default function SignupPage() {
 
     setLoading(true);
 
+    const plan = role === "founder"? "free": ""
+
     try {
       const { data, error } = await authClient.signUp.email({
         name,
@@ -150,6 +152,7 @@ export default function SignupPage() {
         password,
         image: photoUrl,
         role,
+        plan,
       });
 
       if (error) {

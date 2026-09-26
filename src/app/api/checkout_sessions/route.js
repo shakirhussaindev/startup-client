@@ -26,6 +26,7 @@ export async function POST(request) {
         },
       ],
       mode: "subscription",
+      metadata: {planId},
       success_url: `${origin}/plans/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/plans`,
       // integration_identifier: "{{INTEGRATION_ID}}",
