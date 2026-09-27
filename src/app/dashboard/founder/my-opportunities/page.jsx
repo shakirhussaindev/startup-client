@@ -89,7 +89,6 @@ export default async function MyOpportunitiesPage() {
   }
 
   const startup = await getLoggedInFounderStartup();
-
   // If founder hasn't registered a startup yet
   if (!startup) {
     return (

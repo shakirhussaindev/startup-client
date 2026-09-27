@@ -102,12 +102,12 @@ export function DashboardSidebar() {
     },
     {
       label: "Manage Users",
-      href: "/dashboard/admin/users",
+      href: "/dashboard/admin/manage-users",
       icon: Users,
     },
     {
       label: "Manage Startups",
-      href: "/dashboard/admin/startups",
+      href: "/dashboard/admin/manage-startups",
       icon: Building2,
     },
     {

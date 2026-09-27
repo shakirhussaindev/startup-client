@@ -7,6 +7,10 @@ import { serverMutation } from "../core/server"
   return serverMutation("/api/startup",newStartup);
  }
 
+ export const updateStartupStatus = async (id,data)=>{
+  return serverMutation(`/api/startup/${id}`, data, 'PATCH');
+ }
+
 
 // const basrUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 

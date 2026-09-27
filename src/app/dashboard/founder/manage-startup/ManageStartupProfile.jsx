@@ -1,3 +1,4 @@
+// components/dashboard/founder/ManageStartupProfile.jsx
 "use client";
 
 import { useState } from "react";
@@ -11,6 +12,7 @@ import {
   Upload,
   AlertCircle,
   CheckCircle2,
+  Clock,
   Loader2,
   Building2,
   DollarSign,
@@ -50,12 +52,42 @@ const INDUSTRIES = [
   "Other",
 ];
 
+// Helper to render status badge
+const getStartupStatusBadge = (status = "pending") => {
+  const normalized = status?.toLowerCase();
+
+  if (normalized === "approved") {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+        <CheckCircle2 size={13} className="shrink-0 text-emerald-500" />
+        <span>Approved</span>
+      </span>
+    );
+  }
+
+  if (normalized === "rejected") {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/30 bg-rose-500/10 px-2.5 py-0.5 text-xs font-semibold text-rose-600 dark:text-rose-400">
+        <AlertCircle size={13} className="shrink-0 text-rose-500" />
+        <span>Rejected</span>
+      </span>
+    );
+  }
+
+  // Default: Pending
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-600 dark:text-amber-400">
+      <Clock size={13} className="shrink-0 text-amber-500" />
+      <span>Pending Approval</span>
+    </span>
+  );
+};
+
 export default function ManageStartupProfile({ founder, founderStartup }) {
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  // Change to null to verify the empty state
   const [startup, setStartup] = useState(founderStartup);
 
   // Modal and feedback states
@@ -185,8 +217,8 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
           Manage Startup
         </h1>
         <p className="text-sm text-default-500">
-          Update your venture settings, edit team information, or delete the
-          profile.
+          Update your venture settings, review profile approval status, or
+          delete the profile.
         </p>
       </div>
 
@@ -206,7 +238,7 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
       </AnimatePresence>
 
       {/* Empty State */}
-      {!startup._id ? (
+      {!startup?._id ? (
         <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-default-300 bg-background/60 p-12 text-center shadow-sm backdrop-blur-xl dark:border-default-100/20">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-500/10 text-orange-500">
             <Rocket size={32} />
@@ -233,16 +265,21 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
           <div className="rounded-3xl border border-default-200/80 bg-background p-6 shadow-xl backdrop-blur-xl dark:border-default-100/20 sm:p-8">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between border-b border-default-200/60 pb-6 dark:border-default-100/20">
               <div className="flex items-center gap-4">
-                <Avatar className="h-16 w-16 rounded-2xl ring-2 ring-orange-500/30">
+                <Avatar className="h-16 w-16 rounded-2xl ring-2 ring-orange-500/30 shrink-0">
                   <Avatar.Image src={startup.logo} alt={startup.name} />
                   <Avatar.Fallback className="text-base font-bold text-orange-500">
-                    {startup.name?.slice(0, 2).toUpperCase()}
+                    {startup.name?.slice(0, 2).toUpperCase() || "SF"}
                   </Avatar.Fallback>
                 </Avatar>
-                <div>
-                  <h2 className="text-xl font-bold text-foreground">
-                    {startup.name}
-                  </h2>
+
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                      {startup.name}
+                    </h2>
+                    {/* Status Badge (Pending / Approved) */}
+                    {getStartupStatusBadge(startup.status)}
+                  </div>
                   <p className="text-xs text-default-500">
                     {startup.industry} • {startup.fundingStage}
                   </p>
@@ -314,7 +351,7 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
                 </p>
               </div>
 
-              {/* Hero UI v3 AlertDialog */}
+              {/* Hero UI AlertDialog */}
               <AlertDialog>
                 <Button
                   type="button"

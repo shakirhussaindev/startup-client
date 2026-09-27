@@ -55,6 +55,7 @@ export default function StartupProfile({ founder, founderStartup }) {
   // Initial startup data (null initially)
   const [startup, setStartup] = useState(founderStartup);
 
+  console.log("founderStartup", founderStartup);
   // Modal & form states
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -168,7 +169,7 @@ export default function StartupProfile({ founder, founderStartup }) {
         fundingStage,
         description: description.trim(),
         founderEmail: user?.email,
-        status: "Pending",
+        status: founderStartup && founderStartup.status? founderStartup.status :  "Pending",
         founderId: founder?.id,
         createdAt: new Date().toISOString(),
       };
