@@ -71,6 +71,7 @@ export default function Navbar() {
 const dashboardLinks = {
   founder: "/dashboard/founder",
   collaborator: "/dashboard/collaborator",
+  admin: "/dashboard/admin",
 };
 
 if(user?.email){

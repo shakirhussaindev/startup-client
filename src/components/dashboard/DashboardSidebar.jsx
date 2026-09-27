@@ -16,6 +16,9 @@ import {
   Compass,
   FileCheck2,
   UserPen,
+  Users,
+  Building2,
+  ReceiptText,
 } from "lucide-react";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { Button, Drawer, Avatar } from "@heroui/react";
@@ -91,9 +94,33 @@ export function DashboardSidebar() {
     },
   ];
 
+  const adminNavItems = [
+    {
+      label: "Overview",
+      href: "/dashboard/admin",
+      icon: LayoutDashboard,
+    },
+    {
+      label: "Manage Users",
+      href: "/dashboard/admin/users",
+      icon: Users,
+    },
+    {
+      label: "Manage Startups",
+      href: "/dashboard/admin/startups",
+      icon: Building2,
+    },
+    {
+      label: "Transactions",
+      href: "/dashboard/admin/transactions",
+      icon: ReceiptText,
+    },
+  ];
+
   const navLinksMap = {
     collaborator: collaboratorNavItems,
     founder: founderNavItems,
+    admin: adminNavItems
   };
   const navItems = navLinksMap[user?.role || "collaborator"];
 

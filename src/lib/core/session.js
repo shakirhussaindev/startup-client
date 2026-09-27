@@ -20,5 +20,5 @@ export const requireRole = async (role) => {
   if(user.role !== role){
     redirect('/unauthorized')
   }
-  return user
+  return user 
 }
