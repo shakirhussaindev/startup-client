@@ -104,7 +104,7 @@ export default function ApplyForm({ opportunity, applicant }) {
         );
         
         setTimeout(() => {
-          router.push(`/opportunities/${opportunity?._id}`);
+          router.push(`/opportunities`);
         }, 1500);
       }
       } catch (err) {
