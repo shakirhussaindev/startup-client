@@ -164,7 +164,7 @@ export default async function MyOpportunitiesPage() {
               className="flex h-10 items-center gap-2 rounded-xl bg-default-100 px-4 text-xs font-semibold text-foreground hover:bg-default-200 dark:bg-default-100/20"
             >
               <Lock size={14} className="text-rose-500" />
-              <span>Limit Reached • Upgrade Plan</span>
+              <span className="text-white">Limit Reached • Upgrade Plan</span>
             </Button>
           </Link>
         ) : (

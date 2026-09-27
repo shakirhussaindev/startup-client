@@ -60,7 +60,6 @@ export default function DashboardNavbar() {
         mx-auto max-w-6xl px-4 sm:px-6 lg:px-8
       */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:mr-30">
-        
         {/* ================= LEFT: REFINED BREADCRUMB BADGE ================= */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 rounded-xl border border-default-200/70 bg-default-100/40 py-1 pl-2.5 pr-3 shadow-xs dark:border-default-100/20 dark:bg-default-100/10">
@@ -105,11 +104,8 @@ export default function DashboardNavbar() {
           })}
         </div>
 
-        {/* ================= RIGHT: SEARCH, NOTIFICATIONS, THEME & USER ================= */}
+       
         <div className="flex items-center gap-2.5">
-          
-         
-
           {/* Theme Toggle Button */}
           <ThemeIconButton />
 
@@ -150,8 +146,8 @@ export default function DashboardNavbar() {
                 <Dropdown.Menu
                   aria-label="User actions"
                   onAction={(key) => {
-                    if (key === "dashboard") router.push("/dashboard/founder");
-                    if (key === "startup") router.push("/dashboard/founder/my-startup");
+                    if (key === "dashboard")
+                      router.push(`/dashboard/${user?.role}`);
                     if (key === "profile") router.push("/profile");
                     if (key === "logout") handleLogout();
                   }}
@@ -168,7 +164,7 @@ export default function DashboardNavbar() {
                           {user.name}
                         </p>
                         <span className="rounded-full bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-600 dark:text-orange-400">
-                          {user.role || "Founder"}
+                          {user.role || "collaborator"}
                         </span>
                       </div>
                       <p className="truncate text-xs text-default-500">
@@ -215,7 +211,6 @@ export default function DashboardNavbar() {
             </Dropdown>
           ) : null}
         </div>
-
       </div>
     </header>
   );

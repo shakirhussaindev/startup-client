@@ -23,14 +23,10 @@ import { authClient } from "@/lib/auth-client";
 
 import ThemeIconButton from "./ThemeIconButton";
 
-const publicNavLinks = [
-  { name: "Home", href: "/" },
-  { name: "Startups", href: "/startups" },
-  { name: "Opportunities", href: "/opportunities" },
-];
+
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const pathName = usePathname();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -41,7 +37,7 @@ export default function Navbar() {
   // Auto-close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-  }, [pathname]);
+  }, [pathName]);
 
   // Handle Logout
   const handleLogout = async () => {
@@ -66,7 +62,24 @@ export default function Navbar() {
       .toUpperCase();
   };
 
-   const pathName = usePathname();
+  const publicNavLinks = [
+  { name: "Home", href: "/" },
+  { name: "Startups", href: "/startups" },
+  { name: "Opportunities", href: "/opportunities" },
+];
+
+const dashboardLinks = {
+  founder: "/dashboard/founder",
+  collaborator: "/dashboard/collaborator",
+};
+
+if(user?.email){
+  publicNavLinks.push({
+    label: "Dashboard",
+    href: dashboardLinks[user?.role || "collaborator"],
+  });
+}
+   
 
    if (pathName.includes("dashboard")) {
      return null;
@@ -95,7 +108,7 @@ export default function Navbar() {
         {/* ================= MIDDLE: DESKTOP NAV LINKS ================= */}
         <div className="hidden items-center gap-1 md:flex">
           {publicNavLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive = pathName === link.href;
             return (
               <Link
                 key={link.name}
@@ -162,7 +175,7 @@ export default function Navbar() {
                   aria-label="User actions"
                   onAction={(key) => {
                     if (key === "dashboard") router.push(`/dashboard/${user.role}`);
-                    if (key === "profile") router.push("/profile");
+                    if (key === "profile") router.push(`/profile/${user.role}`);
                     if (key === "logout") handleLogout();
                   }}
                 >
@@ -312,7 +325,7 @@ export default function Navbar() {
                   Navigation
                 </span>
                 {publicNavLinks.map((link) => {
-                  const isActive = pathname === link.href;
+                  const isActive = pathName === link.href;
                   return (
                     <Link
                       key={link.name}
@@ -337,14 +350,14 @@ export default function Navbar() {
                     Account
                   </span>
                   <Link
-                    href="/dashboard"
+                    href={`/dashboard/${user.role}`}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-default-700 hover:bg-default-100"
                   >
                     <LayoutDashboard size={18} className="text-default-500" />
                     <span>Dashboard</span>
                   </Link>
                   <Link
-                    href="/profile"
+                    href={`/profile/${user.role}`}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-default-700 hover:bg-default-100"
                   >
                     <User size={18} className="text-default-500" />

@@ -13,54 +13,89 @@ import {
   FileText,
   LogOut,
   ArrowLeft,
+  Compass,
+  FileCheck2,
+  UserPen,
 } from "lucide-react";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { Button, Drawer, Avatar } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 
-const navItems = [
-  {
-    label: "Overview",
-    href: "/dashboard/founder",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "My Startup",
-    href: "/dashboard/founder/my-startup",
-    icon: Rocket,
-  },
-  {
-    label: "Manage Startup",
-    href: "/dashboard/founder/manage-startup",
-    icon: Settings2,
-  },
-  {
-    label: "Add Opportunity",
-    href: "/dashboard/founder/my-opportunities/new",
-    icon: PlusCircle,
-  },
-  {
-    label: "Manage Opportunities",
-    href: "/dashboard/founder/my-opportunities",
-    icon: Briefcase,
-  },
-  {
-    label: "Applications",
-    href: "/dashboard/applications",
-    icon: FileText,
-  },
-];
+
 
 export function DashboardSidebar() {
+
   const pathname = usePathname();
   const router = useRouter();
 
-  // Mobile drawer open state
+
   const [isOpen, setIsOpen] = useState(false);
 
-  // Better Auth session hook
+  
   const { data: session } = authClient.useSession();
   const user = session?.user;
+
+  const founderNavItems = [
+    {
+      label: "Overview",
+      href: "/dashboard/founder",
+      icon: LayoutDashboard,
+    },
+    {
+      label: "My Startup",
+      href: "/dashboard/founder/my-startup",
+      icon: Rocket,
+    },
+    {
+      label: "Manage Startup",
+      href: "/dashboard/founder/manage-startup",
+      icon: Settings2,
+    },
+    {
+      label: "Add Opportunity",
+      href: "/dashboard/founder/my-opportunities/new",
+      icon: PlusCircle,
+    },
+    {
+      label: "Manage Opportunities",
+      href: "/dashboard/founder/my-opportunities",
+      icon: Briefcase,
+    },
+    {
+      label: "Applications",
+      href: "/dashboard/applications",
+      icon: FileText,
+    },
+  ];
+
+  const collaboratorNavItems = [
+    {
+      label: "Overview",
+      href: "/dashboard/collaborator",
+      icon: LayoutDashboard,
+    },
+    {
+      label: "Browse Opportunities",
+      href: "/dashboard/collaborator/browse-opportunities",
+      icon: Compass,
+    },
+    {
+      label: "My Applications",
+      href: "/dashboard/collaborator/my-applications",
+      icon: FileCheck2,
+    },
+    {
+      label: "Profile Update",
+      href: "/dashboard/collaborator/profile",
+      icon: UserPen,
+    },
+  ];
+
+  const navLinksMap = {
+    collaborator: collaboratorNavItems,
+    founder: founderNavItems,
+  };
+  const navItems = navLinksMap[user?.role || "collaborator"];
 
   // Automatically close mobile drawer upon route change
   useEffect(() => {
@@ -95,6 +130,8 @@ export function DashboardSidebar() {
       .join("")
       .toUpperCase();
   };
+
+  
 
   // Reusable Sidebar Navigation Content
   const renderNavContent = (isMobile = false) => (
