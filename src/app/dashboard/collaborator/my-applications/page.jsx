@@ -8,7 +8,6 @@ import {
   Clock4,
   CheckCircle2,
   XCircle,
-  Sparkles,
   ArrowUpRight,
   ExternalLink,
   FileText,
@@ -37,7 +36,6 @@ const getStatusBadge = (status = "Pending") => {
     case "shortlisted":
       return (
         <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-          <Sparkles size={13} />
           <span>Shortlisted</span>
         </span>
       );
