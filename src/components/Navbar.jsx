@@ -88,7 +88,7 @@ if(user?.email){
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-default-200/50 bg-background/75 backdrop-blur-xl transition-colors dark:border-default-100/20">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-16 max-w-10/12 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ================= LEFT: BRAND LOGO ================= */}
         <Link
           href="/"
@@ -114,9 +114,9 @@ if(user?.email){
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`relative px-8 py-2 text-md font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-primary dark:text-orange-400 font-semibold"
+                    ? "text-primary text-orange-400 font-semibold"
                     : "text-default-600 hover:text-foreground"
                 }`}
               >

@@ -35,7 +35,7 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-default-200/50 bg-background/95 transition-colors dark:border-default-100/20">
-      <div className="mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-10/12 px-4 pt-14 pb-10 sm:px-6 lg:px-8">
         {/* ================= TOP GRID ================= */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           {/* Brand & Contact (Takes 6 cols) */}

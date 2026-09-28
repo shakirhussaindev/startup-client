@@ -3,8 +3,12 @@ import { getUserSession } from "../core/session";
 
 
 export const getStartups = async () => {
-  return protectedFetch('/api/startups')
+  return serverFetch('/api/startups')
 }
+
+export const getStartupById = async (id) => {
+  return serverFetch(`/api/startups/${id}`);
+};
 
 export const getFounderStartup = async (founderId) =>{
   return serverFetch(`/api/my/startup?founderId=${founderId}`);

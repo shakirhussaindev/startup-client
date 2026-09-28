@@ -16,3 +16,4 @@ export const getOpportunities = async () => {
 export const getOpportunityById = async (id) => {
   return serverFetch(`/api/opportunities/${id}`);
 };
+
