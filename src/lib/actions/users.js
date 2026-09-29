@@ -4,6 +4,7 @@
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { auth } from "../auth";
+import { authHeader } from "../core/server";
 
 export const banUsers = async (
   userId,
@@ -32,4 +33,29 @@ export const unbanUsers = async (userId) => {
 
   revalidatePath("/dashboard/admin/manage-users");
   return data;
+};
+
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+export const updateUserProfile = async (userId, updateData) => {
+  try {
+    const res = await fetch(`${baseUrl}/api/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ... await authHeader()
+      },
+      body: JSON.stringify(updateData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to update profile");
+    }
+
+    revalidatePath("/profile");
+    return { success: true };
+  } catch (error) {
+    console.error("Profile update error:", error);
+    return { success: false, error: error.message };
+  }
 };

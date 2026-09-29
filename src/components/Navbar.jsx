@@ -176,7 +176,7 @@ if(user?.email){
                   aria-label="User actions"
                   onAction={(key) => {
                     if (key === "dashboard") router.push(`/dashboard/${user.role}`);
-                    if (key === "profile") router.push(`/profile/${user.role}`);
+                    if (key === "profile") router.push(`/profile`);
                     if (key === "logout") handleLogout();
                   }}
                 >
@@ -358,7 +358,7 @@ if(user?.email){
                     <span>Dashboard</span>
                   </Link>
                   <Link
-                    href={`/profile/${user.role}`}
+                    href={`/profile`}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-default-700 hover:bg-default-100"
                   >
                     <User size={18} className="text-default-500" />

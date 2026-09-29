@@ -79,7 +79,7 @@ export function DashboardSidebar() {
     },
     {
       label: "Browse Opportunities",
-      href: "/dashboard/collaborator/browse-opportunities",
+      href: "/opportunities",
       icon: Compass,
     },
     {
@@ -89,7 +89,7 @@ export function DashboardSidebar() {
     },
     {
       label: "Profile Update",
-      href: "/dashboard/collaborator/profile",
+      href: "/profile",
       icon: UserPen,
     },
   ];
