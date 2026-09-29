@@ -9,8 +9,8 @@ export const getStartupOpportunities = async (startupId) => {
   return res.json();
 };
 
-export const getOpportunities = async () => {
-  return serverFetch("/api/opportunities");
+export const getOpportunities = async (queryString) => {
+  return serverFetch(`/api/opportunities?${queryString}`);
 };
 
 export const getFeaturedOpportunities = async () => {
