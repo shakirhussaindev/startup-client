@@ -13,6 +13,10 @@ export const getOpportunities = async () => {
   return serverFetch("/api/opportunities");
 };
 
+export const getFeaturedOpportunities = async () => {
+  return serverFetch("/api/opportunities/featured");
+};
+
 export const getOpportunityById = async (id) => {
   return serverFetch(`/api/opportunities/${id}`);
 };

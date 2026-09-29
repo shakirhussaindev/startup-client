@@ -19,3 +19,10 @@ export const getLoggedInFounderStartup = async ()=>{
   const user = await getUserSession()
   return getFounderStartup(user?.id)
 }
+
+
+
+export const getFeaturedStartups = async () => {
+  return serverFetch("/api/startups/featured");
+ };
+
