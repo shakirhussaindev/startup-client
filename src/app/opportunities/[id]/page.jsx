@@ -30,12 +30,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
+
+
 export default async function OpportunityDetailPage({ params }) {
   const { id } = await params;
   const opportunity = await getOpportunityById(id);
 
   // Return standard Next.js 404 page if not found
-  if (!opportunity) {
+
+  if (!opportunity || !opportunity._id) {
     notFound();
   }
 

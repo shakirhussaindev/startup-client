@@ -76,7 +76,7 @@ const dashboardLinks = {
 
 if(user?.email){
   publicNavLinks.push({
-    label: "Dashboard",
+    lebel: "Dashboard",
     href: dashboardLinks[user?.role || "collaborator"],
   });
 }
@@ -112,9 +112,9 @@ if(user?.email){
             const isActive = pathName === link.href;
             return (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
-                className={`relative px-8 py-2 text-md font-medium transition-colors duration-200 ${
+                className={`relative px-8 py-2 text-base font-semibold transition-colors duration-200 ${
                   isActive
                     ? "text-primary text-orange-400 font-semibold"
                     : "text-default-600 hover:text-foreground"
@@ -329,7 +329,7 @@ if(user?.email){
                   const isActive = pathName === link.href;
                   return (
                     <Link
-                      key={link.name}
+                      key={link.href}
                       href={link.href}
                       className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                         isActive

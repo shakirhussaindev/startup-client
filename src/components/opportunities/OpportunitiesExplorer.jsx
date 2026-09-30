@@ -138,34 +138,35 @@ export default function OpportunitiesExplorer({
         {/* Top: Search Input + Results Count */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative flex-1">
-            <Input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by role title or required skills..."
-              startContent={
-                <Search size={16} className="text-default-400 shrink-0" />
-              }
-              endContent={
-                search ? (
-                  <button
-                    type="button"
-                    onClick={() => setSearch("")}
-                    className="rounded-full p-1 text-default-400 transition-colors hover:bg-default-100 hover:text-foreground"
-                  >
-                    <X size={14} />
-                  </button>
-                ) : null
-              }
-              className="w-full !rounded-2xl"
-            />
+
+            <div className="relative w-full">
+              <Search
+                size={16}
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-default-400 pointer-events-none"
+              />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search by role title or required skills..."
+                className="h-10 w-full rounded-2xl border border-default-200/80 bg-default-100/40 pl-10 pr-10 text-xs font-medium text-foreground transition-colors focus:border-orange-500 focus:outline-none dark:border-default-100/20 dark:bg-default-100/10"
+              />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-default-400 transition-colors hover:bg-default-200 hover:text-foreground"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+            
           </div>
 
           <div className="flex items-center gap-2 self-start sm:self-center">
             <span className="inline-flex items-center rounded-xl border border-default-200/70 bg-default-100/50 px-3 py-2 text-xs font-semibold text-default-600 dark:border-default-100/20 dark:bg-default-100/10 dark:text-default-300">
-              {total}{" "}
-              {total === 1
-                ? "Opportunity"
-                : "Opportunities"}
+              {total} {total === 1 ? "Opportunity" : "Opportunities"}
             </span>
 
             {hasActiveFilters && (

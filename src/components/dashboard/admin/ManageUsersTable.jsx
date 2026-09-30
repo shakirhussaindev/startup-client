@@ -45,6 +45,9 @@ export default function ManageUsersTable({ initialUsers = [] }) {
 
   // Handle Ban / Unban Toggle
   const handleToggleBan = async (user) => {
+    
+    if (user.role?.toLowerCase() === "admin") return;
+
     const isBanned = Boolean(user.banned);
     setLoadingUserId(user.id);
 
@@ -157,6 +160,7 @@ export default function ManageUsersTable({ initialUsers = [] }) {
                 filteredUsers.map((user) => {
                   const isBanned = Boolean(user.banned);
                   const isLoading = loadingUserId === user.id;
+                  const isAdmin = user.role?.toLowerCase() === "admin";
 
                   const joinedDate = user.createdAt
                     ? new Date(user.createdAt).toLocaleDateString("en-US", {
@@ -217,7 +221,11 @@ export default function ManageUsersTable({ initialUsers = [] }) {
 
                       {/* 5. Block / Unblock Actions */}
                       <td className="px-6 py-4 text-right">
-                        {isLoading ? (
+                        {isAdmin ? (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-default-200/80 bg-default-100/60 px-2.5 py-0.5 text-[11px] font-semibold text-default-400 dark:border-default-100/15 dark:bg-default-100/10">
+                            Protected
+                          </span>
+                        ) : isLoading ? (
                           <div className="inline-flex items-center gap-2 px-3 py-1.5 text-xs text-default-500">
                             <Loader2
                               size={14}

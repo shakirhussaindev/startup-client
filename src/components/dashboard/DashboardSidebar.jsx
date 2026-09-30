@@ -19,6 +19,7 @@ import {
   Users,
   Building2,
   ReceiptText,
+  ChartNoAxesCombined,
 } from "lucide-react";
 import { BsLayoutSidebar } from "react-icons/bs";
 import { Button, Drawer, Avatar } from "@heroui/react";
@@ -114,6 +115,11 @@ export function DashboardSidebar() {
       label: "Transactions",
       href: "/dashboard/admin/transactions",
       icon: ReceiptText,
+    },
+    {
+      label: "Statistics",
+      href: "/dashboard/admin/stats",
+      icon: ChartNoAxesCombined ,
     },
   ];
 

@@ -16,7 +16,7 @@ export default async function UserManagementPage() {
     <div className="space-y-6 p-4 sm:p-6 lg:p-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Manage Users
+          Manage Users 
         </h1>
         <p className="mt-1 text-xs text-default-500 sm:text-sm">
           View registered users, inspect account statuses, filter by date, and
