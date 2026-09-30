@@ -31,6 +31,7 @@ import {
   Avatar,
 } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
+import { deleteStartup, updateStartup } from "@/lib/actions/startup";
 
 const FUNDING_STAGES = [
   "Idea / Pre-Product",
@@ -176,16 +177,14 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
         founderEmail: editFounderEmail.trim(),
       };
 
-      // TODO: Connect update API:
-      // await fetch(`/api/startups/${startup._id}`, {
-      //   method: "PUT",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(updatedPayload),
-      // });
 
-      setStartup((prev) => ({ ...prev, ...updatedPayload }));
-      setSuccessMessage("Startup details successfully updated.");
-      setIsEditOpen(false);
+      const res = await updateStartup(startup._id,updatedPayload);
+      if (res.modifiedCount){
+        setStartup((prev) => ({ ...prev, ...updatedPayload }));
+        setSuccessMessage("Startup details successfully updated.");
+        setIsEditOpen(false);
+      }
+        
     } catch (err) {
       setErrorMessage(err.message || "Failed to update startup details.");
     } finally {
@@ -196,14 +195,16 @@ export default function ManageStartupProfile({ founder, founderStartup }) {
   // Delete Startup Handler
   const handleDeleteStartup = async () => {
     try {
-      // TODO: Connect delete API:
-      // await fetch(`/api/startups/${startup._id}`, { method: "DELETE" });
-
-      setStartup(null);
-      setSuccessMessage("Startup permanently deleted.");
-      setTimeout(() => {
-        router.push("/dashboard/founder/my-startup");
-      }, 1000);
+      const res = await deleteStartup(startup._id);
+      if (res.deletedCount){
+        setStartup(null);
+        setSuccessMessage("Startup permanently deleted.");
+        setTimeout(() => {
+          router.push("/dashboard/founder/my-startup");
+        }, 1000);
+      }
+        
+        
     } catch (error) {
       console.error("Failed to delete startup:", error);
     }

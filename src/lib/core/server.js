@@ -45,6 +45,18 @@ export const serverMutation = async (path,data, method = "POST") => {
  return handleStatusCode(res)
 };
 
+export const serverDelete = async (path) => {
+  const res = await fetch(`${baseUrl}${path}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+      ... await authHeader()
+    },
+  });
+
+ return handleStatusCode(res)
+};
+
 
 // handle 401 403 404
 const handleStatusCode = (res) => {
@@ -55,4 +67,4 @@ const handleStatusCode = (res) => {
    }
 
    return res.json();
-}
+} 

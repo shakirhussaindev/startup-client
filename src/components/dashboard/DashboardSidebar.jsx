@@ -66,7 +66,7 @@ export function DashboardSidebar() {
     },
     {
       label: "Applications",
-      href: "/dashboard/applications",
+      href: "/dashboard/founder/applications",
       icon: FileText,
     },
   ];
