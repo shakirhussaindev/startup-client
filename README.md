@@ -2,7 +2,7 @@ StartupForge — Platform for Founders & Collaborators
 StartupForge is a role-based ecosystem platform designed to bridge the gap between early-stage startup founders and skilled talent. It empowers founders to build ventures, post collaborative roles, and evaluate applicants, while enabling professionals to discover vetted startups, pitch their expertise, and track opportunities in real time.
 
 🌐 Live Deployment & Links
-Live Application: https://startupforge.vercel.app (Replace with your live URL)
+Live Application: [https://startupforge.vercel.app](https://startup-client-eta.vercel.app/) (Replace with your live URL)
 
 Client Repository: GitHub Repository
 
