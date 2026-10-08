@@ -1,6 +1,11 @@
 # 🚀 StartupForge — Startup Team Building Platform
 
+<<<<<<< HEAD
 StartupForge is a role-based platform that connects **startup founders with skilled collaborators**. Founders can create startups, publish opportunities, review applicants, and build their teams, while collaborators can discover opportunities, apply, and track their applications.
+=======
+🌐 Live Deployment & Links
+Live Application: [https://startup-client-eta.vercel.app/](https://startup-client-eta.vercel.app/) 
+>>>>>>> ea24dbcf95a94e53b9bf1167d3d87448eefe185d
 
 The platform also includes an **admin dashboard, analytics, user management, and Stripe-based subscription plans**, making it suitable as a foundation for a SaaS product.
 
@@ -124,6 +129,7 @@ StartupForge follows a modern **Server/Client hybrid architecture**.
 * Stripe webhooks synchronize payment information with the database.
 * Sensitive authentication data is handled through secure sessions/cookies.
 
+<<<<<<< HEAD
 ---
 
 ## 📊 Platform Workflow
@@ -161,3 +167,7 @@ StartupForge provides a structured ecosystem where:
 This project is licensed under the **MIT License**.
 
 See the `LICENSE` file for more information.
+=======
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
+>>>>>>> ea24dbcf95a94e53b9bf1167d3d87448eefe185d
